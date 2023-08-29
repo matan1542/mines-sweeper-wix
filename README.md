@@ -1,4 +1,4 @@
-# Minesweeper Game for Next.js
+# Minesweeper Game
 
 ![Minesweeper Demo](demo.gif)
 
