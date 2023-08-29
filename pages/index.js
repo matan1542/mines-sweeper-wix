@@ -1,7 +1,7 @@
 import MinesSweeper from '@/components/MinesSweeper'
 import {useState} from 'react'
 import BoardContext from '@/store/store'
-import {createMatrix} from "@/services/game.service";
+import { createMatrix } from "@/services/game.service";
 
 export default function Home() {
     const [board, setBoard] = useState(createMatrix());
