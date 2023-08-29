@@ -11,7 +11,6 @@ export {
   
 // Check large condition that checks if there are neighbors that are greater then 0 that are not mines or shown and if there is.. stop recursion
 function expandShown({ board, pos }) {
-  console.log('expandShown', board);
   let copyBoard = JSON.parse(JSON.stringify(board));
   let countMines = copyBoard[pos.i][pos.j].minesAroundCount;
   if (
@@ -63,7 +62,6 @@ function createMatrix(gLevel = G_LEVELS[2]) {
 }
 
 function updateCellDisplay(board, pos) {
-  console.log("board", pos);
   let copyBoard = JSON.parse(JSON.stringify(board));
   copyBoard[pos.i][pos.j].isShown = true;
   return copyBoard;

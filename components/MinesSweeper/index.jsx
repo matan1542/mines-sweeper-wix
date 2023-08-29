@@ -8,14 +8,12 @@ const MinesSweeper = () => {
   const { board, setBoard, isGameOn, setIsGameOn } = useContext(BoardContext);
 
   const onCellClick = (pos) => {
-    console.log("adasdasd");
     let updateBoard = JSON.parse(JSON.stringify(board));
     if (!isGameOn) {
       updateBoard = generateMines({ board, pos });
       updateBoard = updateNeighborsCount(updateBoard);
       setIsGameOn(true);
     }
-    console.log('board', updateBoard);
     updateBoard = expandShown({ board: updateBoard, pos });
     setBoard(updateBoard);
   };
