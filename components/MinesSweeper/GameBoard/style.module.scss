@@ -1,0 +1,33 @@
+.gameBoardContainer {
+  display: flex;
+  margin: 0 auto;
+  padding: 0;
+
+  background-color: #fff;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+  td {
+    text-align: center;
+    vertical-align: middle;
+    width: 50px;
+    border: 1px solid #000;
+    height: 50px;
+  }
+  // @media (min-width: 768px){
+  //     width: 80%;
+  // }
+  // @media (min-width: 1024px){
+  //     width: 60%;
+  // }
+  // @media (min-width: 1440px){
+  //     width: 40%;
+  // }
+  // @media (min-width: 1920px){
+  //     width: 30%;
+  // }
+  // @media (min-width: 2560px){
+  //     width: 20%;
+  // }
+}
