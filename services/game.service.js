@@ -1,8 +1,8 @@
-import { G_LEVELS } from "@/constants/GAME_CONSTANTS";
-import { getRandomIntInclusive } from "./util.service";
+import {G_LEVELS} from "@/constants/GAME_CONSTANTS";
+import {countNeighbors, getRandomIntInclusive} from "./util.service";
 
 
-export { createMatrix, generateMines };
+export {createMatrix, generateMines, updateNeighborsCount};
 // Check large condition that checks if there are neighbors that are greater then 0 that are not mines or shown and if there is.. stop recursion
 // function expandShown(pos) {
 //   var countMines = gBoard[pos.i][pos.j].minesAroundCount;
@@ -38,34 +38,45 @@ export { createMatrix, generateMines };
 // }
 
 function createMatrix(gLevel = G_LEVELS[0]) {
-  var mat = [];
-  for (var i = 0; i < gLevel.SIZE; i++) {
-    mat[i] = [];
-    for (var j = 0; j < gLevel.SIZE; j++) {
-      mat[i][j] = {
-        minesAroundCount: 0,
-        isShown: false,
-        isMine: false,
-        isMarked: false,
-      };
+    var mat = [];
+    for (var i = 0; i < gLevel.SIZE; i++) {
+        mat[i] = [];
+        for (var j = 0; j < gLevel.SIZE; j++) {
+            mat[i][j] = {
+                minesAroundCount: 0,
+                isShown: false,
+                isMine: false,
+                isMarked: false,
+            };
+        }
     }
-  }
-  return mat;
+    return mat;
 }
 
-function generateMines(board, amount = G_LEVELS[0].MINES, pos) {
-  let copyBoard = JSON.stringify(JSON.parse(board));
-  for (var i = 0; i < amount; i++) {
-    var randI = getRandomIntInclusive(0, copyBoard.length - 1);
-    var randJ = getRandomIntInclusive(0, copyBoard.length - 1);
-    if (
-      copyBoard[randI][randJ].isMine ||
-      (pos.i === randI && pos.j === randJ)
-    ) {
-      i--;
-    } else {
-      copyBoard[randI][randJ].isMine = true;
+function updateNeighborsCount(board) {
+    let copyBoard = JSON.parse(JSON.stringify(board));
+    for (let i = 0; i < copyBoard.length; i++) {
+        for (let j = 0; j < copyBoard[i].length; j++) {
+            const neighborsCount = countNeighbors(i, j, copyBoard);
+            copyBoard[i][j].minesAroundCount = neighborsCount;
+        }
     }
-  }
-  return copyBoard;
+    return copyBoard;
+}
+
+function generateMines({board, amount = G_LEVELS[0].MINES, pos}) {
+    let copyBoard = JSON.parse(JSON.stringify(board));
+    for (let i = 0; i < amount; i++) {
+        const randI = getRandomIntInclusive(0, copyBoard.length - 1);
+        const randJ = getRandomIntInclusive(0, copyBoard.length - 1);
+        if (
+            copyBoard[randI][randJ].isMine ||
+            (pos.i === randI && pos.j === randJ)
+        ) {
+            i--;
+        } else {
+            copyBoard[randI][randJ].isMine = true;
+        }
+    }
+    return copyBoard;
 }

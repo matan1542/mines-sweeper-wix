@@ -1,10 +1,6 @@
 import { createContext } from 'react';
 
-const BoardContext = createContext({
-    board: null,
-    isGameOver: false,
-    isGameWon: false
-});
+const BoardContext = createContext({});
 
 
 export default BoardContext;
