@@ -7,8 +7,9 @@ export {
   updateNeighborsCount,
   updateCellDisplay,
   expandShown,
+  markCell
 };
-  
+
 // Check large condition that checks if there are neighbors that are greater then 0 that are not mines or shown and if there is.. stop recursion
 function expandShown({ board, pos }) {
   let copyBoard = JSON.parse(JSON.stringify(board));
@@ -93,4 +94,10 @@ function generateMines({ board, amount = G_LEVELS[2].MINES, pos }) {
     }
   }
   return copyBoard;
+}
+
+function markCell({board, pos}) {
+    let copyBoard = JSON.parse(JSON.stringify(board));
+    copyBoard[pos.i][pos.j].isMarked = true;
+    return copyBoard;
 }

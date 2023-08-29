@@ -1,6 +1,6 @@
 import TableCell from "./TableCell";
 
-const TableRow = ({ row, rowIndex, onCellClick }) => {
+const TableRow = ({ row, rowIndex, onCellClick, onMarkCell }) => {
   return (
     <tr>
       {row.map((cell, cellIndex) => {
@@ -11,6 +11,7 @@ const TableRow = ({ row, rowIndex, onCellClick }) => {
             i={rowIndex}
             j={cellIndex}
             onClick={() => onCellClick({ i: rowIndex, j: cellIndex })}
+            onMarkCell={() => onMarkCell({ i: rowIndex, j: cellIndex })}
           />
         );
       })}
