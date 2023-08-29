@@ -7,7 +7,8 @@ export {
   updateNeighborsCount,
   updateCellDisplay,
   expandShown,
-  markCell
+  markCell,
+  checkWin
 };
 
 // Check large condition that checks if there are neighbors that are greater then 0 that are not mines or shown and if there is.. stop recursion
@@ -100,4 +101,15 @@ function markCell({board, pos}) {
     let copyBoard = JSON.parse(JSON.stringify(board));
     copyBoard[pos.i][pos.j].isMarked = true;
     return copyBoard;
+}
+
+function checkWin({board}) {
+  for (let i = 0; i < board.length; i++) {
+    for (let j = 0; j < board[i].length; j++) {
+        if (!board[i][j].isMine && !board[i][j].isShown) {
+            return false;
+        }
+    }
+  }
+  return true;
 }
