@@ -1,5 +1,5 @@
 import { G_LEVELS } from "@/constants/GAME_CONSTANTS";
-import { getRandomIntInclusive } from "@/utils/utils";
+import { getRandomIntInclusive } from "./util.service";
 
 
 export { createMatrix, generateMines };
