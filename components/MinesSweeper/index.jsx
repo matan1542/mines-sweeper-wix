@@ -1,12 +1,14 @@
-import style from './style.module.scss';
+import { useContext } from "react";
+import style from "./style.module.scss";
+import BoardContext from "@/store/store";
+import { createMatrix } from "@/services/game.service";
 
 const MinesSweeper = () => {
-    
-    return (
-        <div className={style.MinesSweeperContainer}>
+    const [board, setBoard] = useState(createMatrix()); // [board, setBoard
+  const context = useContext(BoardContext);
 
-        </div>
-    )
-}
+  console.log("context", context);
+  return <div className={style.MinesSweeperContainer}></div>;
+};
 
-export default MinesSweeper
+export default MinesSweeper;

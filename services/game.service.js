@@ -1,6 +1,8 @@
 import { G_LEVELS } from "@/constants/GAME_CONSTANTS";
 import { getRandomIntInclusive } from "@/utils/utils";
 
+
+export { createMatrix, generateMines };
 // Check large condition that checks if there are neighbors that are greater then 0 that are not mines or shown and if there is.. stop recursion
 // function expandShown(pos) {
 //   var countMines = gBoard[pos.i][pos.j].minesAroundCount;
@@ -51,14 +53,19 @@ function createMatrix(gLevel = G_LEVELS[0]) {
   return mat;
 }
 
-function placeMines(board, amount = G_LEVELS[0].MINES) {
+function generateMines(board, amount = G_LEVELS[0].MINES, pos) {
+  let copyBoard = JSON.stringify(JSON.parse(board));
   for (var i = 0; i < amount; i++) {
-    var randI = getRandomIntInclusive(0, board.length - 1);
-    var randJ = getRandomIntInclusive(0, board.length - 1);
-    if (!gBoard[randI][randJ].isMine && !gBoard[randI][randJ].isShown) {
-      board[randI][randJ].isMine = true;
-    } else {
+    var randI = getRandomIntInclusive(0, copyBoard.length - 1);
+    var randJ = getRandomIntInclusive(0, copyBoard.length - 1);
+    if (
+      copyBoard[randI][randJ].isMine ||
+      (pos.i === randI && pos.j === randJ)
+    ) {
       i--;
+    } else {
+      copyBoard[randI][randJ].isMine = true;
     }
   }
+  return copyBoard;
 }
