@@ -40,7 +40,7 @@ Follow these steps to get the Minesweeper Game up and running in your Next.js pr
 1. Clone this repository to your local machine:
 
    ```bash
-   git clone https://github.com/yourusername/minesweeper-nextjs.git
+   git clone https://github.com/matan1542/mines-sweeper-wix.git
    ```
 
 2. Navigate to the project directory:
@@ -77,12 +77,8 @@ Minesweeper is a classic puzzle game where the goal is to uncover all the safe t
 
 Contributions are welcome! If you find a bug or have an idea for an improvement, feel free to open an issue or submit a pull request.
 
-## License
-
-This Minesweeper Game is open-source and available under the [MIT License](LICENSE).
-
 ---
 
 Have fun playing Minesweeper and enjoy the challenge! If you have any questions or suggestions, feel free to reach out.
 
-*This project was created by [Your Name](https://github.com/yourusername).*
+*This project was created by [Matan Lasry](https://github.com/matan1542).*
