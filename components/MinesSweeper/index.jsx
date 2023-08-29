@@ -2,14 +2,8 @@ import { useContext } from "react";
 import style from "./style.module.scss";
 import BoardContext from "@/store/store";
 import GameBoard from "./GameBoard";
-import {
-  createMatrix,
-  expandShown,
-  generateMines,
-  updateNeighborsCount,
-} from "@/services/game.service";
+import { expandShown, generateMines, updateNeighborsCount, markCell, createMatrix } from "@/services/game.service";
 import GameLevels from "./GameLevels";
-import { G_LEVELS } from "@/constants/GAME_CONSTANTS";
 
 const MinesSweeper = () => {
   const { board, setBoard, isGameOn, setIsGameOn, gameLevel, setGameLevel } =
@@ -38,10 +32,15 @@ const MinesSweeper = () => {
     resetGame({ level });
   };
 
+  const onMarkCell = (pos) => {
+    const updatedBoard = markCell({ board, pos });
+    setBoard(updatedBoard);
+  }
+ 
   return (
     <div className={style.MinesSweeperContainer}>
       <GameLevels onLevelChange={onLevelChange} />
-      <GameBoard board={board} onCellClick={onCellClick} />
+      <GameBoard board={board} onCellClick={onCellClick} onMarkCell={onMarkCell} />
     </div>
   );
 };
