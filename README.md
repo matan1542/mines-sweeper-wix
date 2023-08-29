@@ -1,46 +1,88 @@
-<<<<<<< HEAD
-# mines-sweeper-wix
-=======
-<<<<<<< HEAD
-# mines-sweeper-wix
-=======
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Minesweeper Game for Next.js
+
+![Minesweeper Demo](demo.gif)
+
+Welcome to the Minesweeper Game for your Next.js project! This simple yet addictive game will challenge your logic and memory skills as you navigate through a minefield to uncover all the safe tiles.
+
+## Table of Contents
+
+- [Demo](#demo)
+- [Features](#features)
+- [Getting Started](#getting-started)
+  - [Installation](#installation)
+  - [Usage](#usage)
+- [Game Rules](#game-rules)
+- [Contributing](#contributing)
+- [License](#license)
+
+## Demo
+
+Here's a quick preview of the Minesweeper game in action:
+
+![Minesweeper Demo](demo.gif)
+
+## Features
+
+- **Responsive Design:** Play the game on various screen sizes without any issues.
+- **User-Friendly Interface:** Intuitive interface for a smooth gaming experience.
+- **Difficulty Levels:** Choose from different difficulty levels: Easy, Medium, and Hard.
+- **Timer:** Challenge yourself to solve the game as quickly as possible.
+- **Flagging:** Mark tiles suspected to be mines with flags to avoid accidental clicks.
+- **Winning Condition:** The game is won when all non-mine tiles are uncovered.
+- **Losing Condition:** Be careful! Clicking on a mine tile will result in a game over.
 
 ## Getting Started
 
-First, run the development server:
+Follow these steps to get the Minesweeper Game up and running in your Next.js project.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+### Installation
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+1. Clone this repository to your local machine:
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+   ```bash
+   git clone https://github.com/yourusername/minesweeper-nextjs.git
+   ```
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+2. Navigate to the project directory:
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+   ```bash
+   cd minesweeper-nextjs
+   ```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+3. Install the required dependencies:
 
-## Learn More
+   ```bash
+   npm install
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+### Usage
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Start the development server:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+   ```bash
+   npm run dev
+   ```
 
-## Deploy on Vercel
+2. Open your browser and go to `http://localhost:3000` to play the Minesweeper game.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Game Rules
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
->>>>>>> 34f6b99 (inital)
->>>>>>> 277045c (inital project)
+Minesweeper is a classic puzzle game where the goal is to uncover all the safe tiles without clicking on any mines. The numbers on the uncovered tiles indicate how many neighboring tiles have mines. Use this information to strategically deduce the location of mines and clear the board.
+
+- Left-click on a tile to uncover it.
+- Right-click (or long press on touch devices) to flag a tile suspected to have a mine.
+- If you uncover a mine, the game ends immediately.
+
+## Contributing
+
+Contributions are welcome! If you find a bug or have an idea for an improvement, feel free to open an issue or submit a pull request.
+
+## License
+
+This Minesweeper Game is open-source and available under the [MIT License](LICENSE).
+
+---
+
+Have fun playing Minesweeper and enjoy the challenge! If you have any questions or suggestions, feel free to reach out.
+
+*This project was created by [Your Name](https://github.com/yourusername).*
