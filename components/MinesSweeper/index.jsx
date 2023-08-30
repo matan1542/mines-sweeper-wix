@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import style from "./style.module.scss";
 import BoardContext from "@/store/store";
 import GameBoard from "./GameBoard";
@@ -8,15 +8,17 @@ import {
   updateNeighborsCount,
   markCell,
   createMatrix,
-  checkWin
+  checkWin,
 } from "@/services/game.service";
 import GameLevels from "./GameLevels";
+import Modal from "../UI/Modal";
 
 const MinesSweeper = () => {
-  const { board, setBoard, isGameOn, setIsGameOn, gameLevel, setGameLevel } =
+  const [isModalOpen, setIsModalOpen] = useState();
+  const { board, setBoard, isGameOn, isGameWon,setIsGameWon, setIsGameOn, gameLevel, setGameLevel } =
     useContext(BoardContext);
 
-  const resetGame = ({level}) => {
+  const resetGame = ({ level }) => {
     setIsGameOn(false);
     setBoard(createMatrix(level));
   };
@@ -26,8 +28,8 @@ const MinesSweeper = () => {
     const currCell = board[pos.i][pos.j];
 
     if (currCell.isMine) {
-      alert('Game Over');
-      resetGame({level: gameLevel});
+      alert("Game Over");
+      resetGame({ level: gameLevel });
       return;
     }
 
@@ -36,30 +38,47 @@ const MinesSweeper = () => {
       updateBoard = updateNeighborsCount(updateBoard);
       setIsGameOn(true);
     }
-
     updateBoard = expandShown({ board: updateBoard, pos });
     setBoard(updateBoard);
-
-    if (checkWin({board: updateBoard})) {
-      alert('You Won!');
-      resetGame({level: gameLevel});
-    }
+    confirmWinGame({ board: updateBoard, gameLevel });
   };
 
   const onLevelChange = (level) => {
     setGameLevel(level);
-    resetGame({level});
+    resetGame({ level });
   };
 
   const onMarkCell = (pos) => {
     const updatedBoard = markCell({ board, pos });
+    confirmWinGame({ board: updatedBoard, gameLevel });
     setBoard(updatedBoard);
-  }
+  };
+
+  const confirmWinGame = ({ board, gameLevel }) => {
+    if (checkWin({ board, gameLevel })) {
+      resetGame({ level: gameLevel });
+      setIsModalOpen(true);
+    }
+  };
+
+  const changeOpenView = (ev) => {
+    ev.stopPropagation();
+    setIsModalOpen(false);
+  };
 
   return (
     <div className={style.MinesSweeperContainer}>
       <GameLevels onLevelChange={onLevelChange} />
-      <GameBoard board={board} onCellClick={onCellClick} onMarkCell={onMarkCell} />
+      <GameBoard
+        board={board}
+        onCellClick={onCellClick}
+        onMarkCell={onMarkCell}
+      />
+      {isModalOpen && (
+        <Modal changeOpenView={changeOpenView} classname={style.successMessage}>
+          <h1>Game won!</h1>
+        </Modal>
+      )}
     </div>
   );
 };

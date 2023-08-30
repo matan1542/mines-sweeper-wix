@@ -8,7 +8,7 @@ export {
   updateCellDisplay,
   expandShown,
   markCell,
-  checkWin
+  checkWin,
 };
 
 // Check large condition that checks if there are neighbors that are greater then 0 that are not mines or shown and if there is.. stop recursion
@@ -23,7 +23,7 @@ function expandShown({ board, pos }) {
   ) {
     copyBoard[pos.i][pos.j].isShown = true;
     // gGame.shownCount++;
-   copyBoard = findNeighbors({ board: copyBoard, cellI: pos.i, cellJ: pos.j });
+    copyBoard = findNeighbors({ board: copyBoard, cellI: pos.i, cellJ: pos.j });
   } else if (countMines > 0 && !copyBoard[pos.i][pos.j].isShown) {
     copyBoard[pos.i][pos.j].isShown = true;
     // gGame.shownCount++;
@@ -40,14 +40,14 @@ function findNeighbors({ board, cellI, cellJ }) {
       if (j < 0 || j >= copyBoard[i].length) continue;
       if (copyBoard[i][j].minesAroundCount >= 0 && !copyBoard[i][j].isShown) {
         let pos = { i: i, j: j };
-        copyBoard = expandShown({ board: copyBoard, pos});
+        copyBoard = expandShown({ board: copyBoard, pos });
       }
     }
   }
   return copyBoard;
 }
 
-function createMatrix(gLevel = G_LEVELS[2]) {
+function createMatrix(gLevel = G_LEVELS[0]) {
   let mat = [];
   for (let i = 0; i < gLevel.SIZE; i++) {
     mat[i] = [];
@@ -97,18 +97,23 @@ function generateMines({ board, amount = G_LEVELS[2].MINES, pos }) {
   return copyBoard;
 }
 
-function markCell({board, pos}) {
-    let copyBoard = JSON.parse(JSON.stringify(board));
-    copyBoard[pos.i][pos.j].isMarked = true;
-    return copyBoard;
+function markCell({ board, pos }) {
+  let copyBoard = JSON.parse(JSON.stringify(board));
+  copyBoard[pos.i][pos.j].isMarked = !copyBoard[pos.i][pos.j].isMarked;
+  return copyBoard;
 }
 
-function checkWin({board}) {
+function checkWin({ board, gameLevel }) {
+  let countMines = 0;
   for (let i = 0; i < board.length; i++) {
     for (let j = 0; j < board[i].length; j++) {
-        if (!board[i][j].isMine && !board[i][j].isShown) {
-            return false;
-        }
+      if (board[i][j].isMine && board[i][j].isMarked && !board[i][j].isShown) {
+        countMines++;
+        if (countMines === gameLevel.MINES) return true;
+      }
+      if (!board[i][j].isMine && !board[i][j].isShown) {
+        return false;
+      }
     }
   }
   return true;

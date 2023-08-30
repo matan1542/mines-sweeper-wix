@@ -1,11 +1,19 @@
+.MinesSweeperContainer {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  align-items: center;
+  background-color: #fff;
+}
 
-.MinesSweeperContainer{
-    position: relative;
-    height: 100vh;
+.successMessage{
     display: flex;
-    flex-direction: column;
-    margin: 20px;
+    justify-content: center;
     align-items: center;
-    background-color: #fff;
-
+    font-size: 1.5rem;
+    h1{
+        color: rgb(27, 134, 27);
+    }
 }
