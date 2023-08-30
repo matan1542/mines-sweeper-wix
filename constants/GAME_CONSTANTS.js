@@ -9,7 +9,7 @@ const DEAD = "🤯";
 const WIN = "😎";
 
 const G_LEVELS = [
-  { SIZE: 4, MINES: 2 },
+  { SIZE: 4, MINES: 1 },
   { SIZE: 8, MINES: 12 },
-  { SIZE: 12, MINES: 30 },
+  { SIZE: 12, MINES: 5 },
 ];
